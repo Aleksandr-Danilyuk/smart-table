@@ -45,6 +45,7 @@ async function render(action) {
     // result = applySearching(result, state, action);
     // result = applyFiltering(result, state, action);
     // result = applySorting(result, state, action);
+    query = applySearching(query, state, action); // result заменяем на query
     query = applyFiltering(query, state, action); // result заменяем на query
     query = applyPagination(query, state, action); // обновляем query
 
