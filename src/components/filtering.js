@@ -53,7 +53,18 @@ export function initFiltering(elements) {
 
     const applyFiltering = (query, state, action) => {
         // код с обработкой очистки поля
-         
+        
+        if (action) { action.addEventListener('click', (event) => { 
+            if (event.target.name === "clear") {
+                const inputField = event.target.closest('.filter-wrapper').querySelector('input');
+                const dataField = event.target.dataset.field;
+
+                if (inputField) {
+                    inputField.value = '';
+                    state[dataField] = ''; // Обновите соответствующее поле в state
+                }
+            }
+        })};
 
         // @todo: #4.5 — отфильтровать данные, используя компаратор
         const filter = {};

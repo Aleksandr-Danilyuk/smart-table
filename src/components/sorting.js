@@ -30,6 +30,10 @@ export function initSorting(columns) {
                     order = column.dataset.value;            // и направление сортировки
                 }
             });
+        if (!field && !order) {
+            field = 'date'; // Замените на нужное поле
+            order = 'down'; // Замените на нужный порядок (например, 'asc' или 'desc')
+        }
         }
 
         const sort = (field && order !== 'none') ? `${field}:${order}` : null; // сохраним в переменную параметр сортировки в виде field:direction
