@@ -11,15 +11,6 @@ export function initTable(settings, onAction) {
     const {tableTemplate, rowTemplate, before, after} = settings;
     const root = cloneTemplate(tableTemplate);
 
-    // @todo: #1.2 —  вывести дополнительные шаблоны до и после таблицы
-   /*
-   const beforeRows = before.reverse().map(templateId => cloneTemplate(templateId).container);
-   const afterRows = after.map(templateId => cloneTemplate(templateId).container);
-
-   beforeRows.forEach(row => root.elements.table.prepend(row));
-   afterRows.forEach(row => root.elements.table.append(row)); 
-   */
-
     before.reverse().forEach(subName => {
         root[subName] = cloneTemplate(subName);
         root.container.prepend(root[subName].container);
@@ -35,7 +26,6 @@ export function initTable(settings, onAction) {
         onAction();
     });
     root.container.addEventListener('reset', () => {
-       // setTimeout``(onAction);
         setTimeout(onAction, 100); // Задержка в 100 мс
     });
     root.container.addEventListener('submit', (e) => {
